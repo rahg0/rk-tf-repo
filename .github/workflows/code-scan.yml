@@ -1,0 +1,35 @@
+name: Cloud Security IaC Scan
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - '**.tf'
+      - '**.json'
+      - '**.yml'
+      - '**.yaml'
+  pull_request:
+    paths:
+      - '**.tf'
+      - '**.json'
+      - '**.yml'
+      - '**.yaml'
+    types: [opened, synchronize, reopened]
+  
+  workflow_dispatch:
+
+permissions: 
+  contents: read
+  checks: write
+  issues: write
+  pull-requests: write
+  security-events: write
+  statuses: write
+jobs:
+  Scan:
+    uses: raghu5/iac-wfl-public/.github/workflows/iac-scan.yml@main
+    with:
+      project_key: ${{ secrets.PROJECT_KEY }}
+      path: ./
+    secrets: inherit
