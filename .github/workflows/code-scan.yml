@@ -30,6 +30,6 @@ jobs:
   Scan:
     uses: raghu5/iac-wfl-public/.github/workflows/iac-scan.yml@main
     with:
-      project_key: ${{ vars.PROJECT_KEY }}
+      project_key: ${{ vars.PROJECT_KEY_RK }}
       path: ./
     secrets: inherit
